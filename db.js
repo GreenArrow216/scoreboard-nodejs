@@ -1,15 +1,14 @@
 const { Pool } = require('pg');
-require('dotenv').config();
 
 const pool = new Pool({
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
-  user: process.env.DATABASE_USER,
-  database: process.env.DATABASE_NAME,
-  idleTimeoutMillis: 30000, // optional, timeout for idle clients
-  connectionTimeoutMillis: 2000, // optional, timeout for initial connection
+  user: 'postgres',
+  host: '192.168.0.18',       // Replace with your server IP if remote
+  database: 'scoreboard',  // Replace with your database name
+  password: '2321',          // No password
+  port: 5432,              // Default PostgreSQL port
 });
 
+// export function query(text, params) { return pool.query(text, params); }
 pool.on('connect', () => {
   console.log('Connected to the PostgreSQL database.');
 });

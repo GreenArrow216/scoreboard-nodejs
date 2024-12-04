@@ -1,19 +1,19 @@
-require('dotenv').config(); // Load .env variables
+require('dotenv').config(); // Load environment variables
 const express = require('express');
-const db = require('./db'); // Database connection
 const app = express();
 
-app.use(express.json()); // Parse JSON request bodies
+app.use(express.json()); // Middleware to parse JSON request bodies
 
-// Simple route for testing
+// Test route
 app.get('/', (req, res) => {
   res.send('Welcome to the Node.js Backend!');
 });
 
-// Example user route
+// Route for scoreboard
 const scoreboardRoutes = require('./routes/scoreboard');
 app.use('/scoreboard', scoreboardRoutes);
 
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
