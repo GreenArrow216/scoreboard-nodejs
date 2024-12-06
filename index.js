@@ -1,6 +1,8 @@
 require('dotenv').config(); // Load environment variables
 const express = require('express');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 
 app.use(express.json()); // Middleware to parse JSON request bodies
 
@@ -10,8 +12,10 @@ app.get('/', (req, res) => {
 });
 
 // Route for scoreboard
-const scoreboardRoutes = require('./routes/scoreboard');
-app.use('/scoreboard', scoreboardRoutes);
+const scoreboardRoutes = require('./routes/players');
+const matchesRoutes = require('./routes/matches')
+app.use('/players', scoreboardRoutes);
+app.use('/matches', matchesRoutes)
 
 // Start the server
 const PORT = process.env.PORT || 3000;
